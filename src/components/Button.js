@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react' 
+import {useState, useEffect} from 'react' 
 
 const variants = {
     default: {
@@ -24,32 +24,41 @@ const variants = {
         border: "none",
         backgroundColor: 'transparent',
         color: "#3D5AFE"
+    },
+
+
+
+    hovers : {
+        default: {
+            backgroundColor: '#AEAEAE',
+        },
+        rest: {
+            backgroundColor: 'rgba(41, 98, 255, 0.1)'
+        }
     }
 }
+
   
 
 const Button = ({variant="default", ...attributes}) => {
-    console.log(variant)
+    // console.log(variant)
     const [buttonText, setButtonText] = useState("Default");
     const [buttonStyle, setButtonStyle] = useState({});
-    
-    const buttonRef = useRef();
     
     useEffect(() => {
         setButtonStyle({...variants['default'], ...variants[variant]})
     }, [variant])
 
-    const handleHover = ({type, target}) => {
-        // if(type === 'mouseover') {
-        //     target.classList.add(`${variant}_hover`)
-        // } else if(type === 'mouseout') {
-        //     target.classList.remove(`${variant}_hover`)
-        // }
-        target.classList.toggle(`${variant}_hover`);
+    const handleHover = ({type}) => {
+        if(type === 'mouseover') {
+            setButtonStyle(style => ({...style, ...variants['hovers'][variant === 'default' ? 'default' : 'rest']}))
+        } else if(type === 'mouseout') {
+            setButtonStyle(style => ({...style, ...variants[variant]}))
+        }
     }
     
     return (
-        <button className="" onMouseOver={handleHover} onMouseOut={handleHover} ref={buttonRef} style={buttonStyle} {...attributes} > 
+        <button onMouseOver={handleHover} onMouseOut={handleHover} style={buttonStyle} {...attributes} > 
             {buttonText}
         </button>
     )
