@@ -13,17 +13,19 @@ const variants = {
         border: 'none',
         outline: 'none',
         backgroundColor: '#E0E0E0',
-        color: '#3F3F3F'
+        color: '#3F3F3F',
     },
     outline: {
         border: '1px solid #3D5AFE',
         backgroundColor: 'transparent',
-        color: "#3D5AFE"
+        color: "#3D5AFE",
+        boxShadow: 'none',
     },
     text: {
         border: "none",
         backgroundColor: 'transparent',
-        color: "#3D5AFE"
+        color: "#3D5AFE",
+        boxShadow: 'none',
     },
 
 
@@ -38,16 +40,24 @@ const variants = {
     }
 }
 
+
+
+
   
 
-const Button = ({variant="default", ...attributes}) => {
-    // console.log(variant)
+const Button = ({variant="default", disableShadow, ...attributes}) => {
     const [buttonText, setButtonText] = useState("Default");
     const [buttonStyle, setButtonStyle] = useState({});
     
     useEffect(() => {
         setButtonStyle({...variants['default'], ...variants[variant]})
     }, [variant])
+
+    useEffect(() => {
+        const shadow = {boxShadow : disableShadow ? 'none' : '0px 2px 3px rgba(51, 51, 51, 0.2)'};
+        setButtonStyle(style => ({...style, ...shadow}))
+    }, [disableShadow])
+
 
     const handleHover = ({type}) => {
         if(type === 'mouseover') {
