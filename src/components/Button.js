@@ -38,7 +38,8 @@ const variants = {
         //     backgroundColor: '#AEAEAE',
         // },
         rest: {
-            backgroundColor: 'rgba(41, 98, 255, 0.1)'
+            backgroundColor: 'rgba(41, 98, 255, 0.1)',
+            cursor: 'pointer'
         }
     }
 }
@@ -80,15 +81,19 @@ const colors = {
     hovers: {
         default: {
             backgroundColor: '#AEAEAE',
+            cursor: 'pointer'
         },
         primary: {
             backgroundColor: '#0039CB',
+            cursor: 'pointer'
         },
         secondary: {
-            backgroundColor: '#1C313A'
+            backgroundColor: '#1C313A',
+            cursor: 'pointer'
         },
         danger: {
-            backgroundColor: '#9A0007'
+            backgroundColor: '#9A0007',
+            cursor: 'pointer'
         },
     }
 }
@@ -96,7 +101,7 @@ const colors = {
 
   
 
-const Button = ({variant="default", disabled, disableShadow, size='md', color='default', ...attributes}) => {
+const Button = ({variant="default", disabled, disableShadow, size='md', color='default', startIcon, endIcon, ...attributes}) => {
     const [buttonText, setButtonText] = useState("Default");
     const [buttonStyle, setButtonStyle] = useState({});
     
@@ -143,9 +148,9 @@ const Button = ({variant="default", disabled, disableShadow, size='md', color='d
     
     return (
         <button disabled={disabled} onMouseOver={handleHover} onMouseOut={handleHover} style={buttonStyle} {...attributes} >
-            {/* <span className='material-icons mg-right'>face</span> */}
+            {startIcon && <span className='material-icons mg-right'>{startIcon}</span>}
             {buttonText}
-            {/* <span className='material-icons mg-left'>face</span> */}
+            { endIcon && <span className='material-icons mg-left'>{endIcon}</span>}
         </button>
     )
 }

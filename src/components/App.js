@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <h1 id="page-title">Buttons</h1>
       <main>
-        <Button color='default' />
+        <Button variant='text' startIcon='face' endIcon='local_grocery_store' color='primary' />
       </main>
     </div>
   );
