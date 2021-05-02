@@ -1,6 +1,6 @@
 # Reusable Button Component for React applications
-I built this reuseable component as part of my personal journey through the Dev Challenges' list of projects. This is the first of many projects in the front-end category. I would be following through over the next couple of weeks. I find the projects there exciting, and a good way to prove and practice my skills. 
-<br>
+I built this reuseable component as part of my personal journey through the [Dev Challenges'](https://devchallenges.io/) list of projects. This is the first of many projects in the front-end category. I would be following through over the next couple of weeks. I find the projects there exciting, and a good way to prove and practice my skills. 
+<br><br>
 **Original project description** [link](https://devchallenges.io/challenges/ohgVTyJCbm5OZyTB2gNY)
 
 ## Live version
