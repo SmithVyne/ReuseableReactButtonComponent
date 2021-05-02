@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <h1 id="page-title">Buttons</h1>
       <main>
-        <Button variant="outline" />
+        <Button color='danger' disableShadow />
       </main>
     </div>
   );

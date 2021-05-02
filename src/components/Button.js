@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 
-
 const variants = {
     default: {
         fontFamily: 'cursive',
@@ -13,6 +12,10 @@ const variants = {
         outline: 'none',
         backgroundColor: '#E0E0E0',
         color: '#3F3F3F',
+        minWidth: 'max-content',
+        display: 'flex',
+        alignItems: 'center',
+        margin: 'auto'
     },
     outline: {
         border: '1px solid #3D5AFE',
@@ -138,8 +141,10 @@ const Button = ({variant="default", disabled, disableShadow, size='md', color='d
     }
     
     return (
-        <button disabled={disabled} onMouseOver={handleHover} onMouseOut={handleHover} style={buttonStyle} {...attributes} > 
+        <button disabled={disabled} onMouseOver={handleHover} onMouseOut={handleHover} style={buttonStyle} {...attributes} >
+            <span className='material-icons'>face</span>
             {buttonText}
+            <span className='material-icons'>face</span>
         </button>
     )
 }
