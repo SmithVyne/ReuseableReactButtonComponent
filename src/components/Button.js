@@ -15,6 +15,7 @@ const variants = {
         minWidth: 'max-content',
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
         margin: 'auto'
     },
     outline: {
@@ -142,9 +143,9 @@ const Button = ({variant="default", disabled, disableShadow, size='md', color='d
     
     return (
         <button disabled={disabled} onMouseOver={handleHover} onMouseOut={handleHover} style={buttonStyle} {...attributes} >
-            <span className='material-icons'>face</span>
+            {/* <span className='material-icons mg-right'>face</span> */}
             {buttonText}
-            <span className='material-icons'>face</span>
+            {/* <span className='material-icons mg-left'>face</span> */}
         </button>
     )
 }

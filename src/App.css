@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.material-icons.mg-right {
+  margin-right: 10px;
+}
+
+.material-icons.mg-left {
+  margin-left: 10px;
+}
