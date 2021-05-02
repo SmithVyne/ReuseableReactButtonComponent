@@ -1,9 +1,8 @@
 import {useState, useEffect} from 'react';
 
+
 const variants = {
     default: {
-        width: '81px',
-        height: '36px',
         fontFamily: 'cursive',
         fontStyle: 'normal',
         fontWeight: 'bold',
@@ -31,9 +30,9 @@ const variants = {
 
 
     hovers : {
-        default: {
-            backgroundColor: '#AEAEAE',
-        },
+        // default: {
+        //     backgroundColor: '#AEAEAE',
+        // },
         rest: {
             backgroundColor: 'rgba(41, 98, 255, 0.1)'
         }
@@ -41,34 +40,105 @@ const variants = {
 }
 
 
+const sizes = {
+    sm: {
+        width: '73px',
+        height: '32px'
+    },
+    md: {
+        width: '81px',
+        height: '36px',
+    },
+    lg: {
+        width: '93px',
+        height: '42px',
+    }
+}
+
+const colors = {
+    default: {
+        color: '#3F3F3F',
+        backgroundColor: '#E0E0E0',
+    },
+    primary: {
+        color: '#FFFFFF',
+        backgroundColor: '#2962FF'
+    },
+    secondary: {
+        color: '#FFFFFF',
+        backgroundColor: '#455A64'
+    },
+    danger: {
+        color: '#FFFFFF',
+        backgroundColor: '#D32F2F'
+    },
+
+    hovers: {
+        default: {
+            backgroundColor: '#AEAEAE',
+        },
+        primary: {
+            backgroundColor: '#0039CB',
+        },
+        secondary: {
+            backgroundColor: '#1C313A'
+        },
+        danger: {
+            backgroundColor: '#9A0007'
+        },
+    }
+}
 
 
   
 
-const Button = ({variant="default", disableShadow, ...attributes}) => {
+const Button = ({variant="default", disabled, disableShadow, size='md', color='default', ...attributes}) => {
     const [buttonText, setButtonText] = useState("Default");
     const [buttonStyle, setButtonStyle] = useState({});
     
     useEffect(() => {
-        setButtonStyle({...variants['default'], ...variants[variant]})
-    }, [variant])
+        setButtonStyle({
+            ...variants['default'],
+            ...variants[variant],
+            ...sizes[size],
+        });
+        
+        if(variant==='default'){
+            // Shadow Effect
+            const shadow = {boxShadow : disableShadow ? 'none' : '0px 2px 3px rgba(51, 51, 51, 0.2)'};
+            setButtonStyle(style => ({...style, ...shadow}))
 
-    useEffect(() => {
-        const shadow = {boxShadow : disableShadow ? 'none' : '0px 2px 3px rgba(51, 51, 51, 0.2)'};
-        setButtonStyle(style => ({...style, ...shadow}))
-    }, [disableShadow])
+            // Color Effect
+            setButtonStyle(style => ({...style, ...colors[color]}));
+        }
+
+        // Disable effect
+        if(disabled) {
+            const disable = {color : '#9E9E9E'};
+            setButtonStyle(style => ({...style, ...disable}))
+        }
+    }, [variant, disableShadow, disabled, color, size])
 
 
+    
     const handleHover = ({type}) => {
         if(type === 'mouseover') {
-            setButtonStyle(style => ({...style, ...variants['hovers'][variant === 'default' ? 'default' : 'rest']}))
+            if(variant === 'default') {
+                setButtonStyle(style => ({...style, ...colors['hovers'][color] }))
+            } else {
+                setButtonStyle(style => ({...style, ...variants['hovers']['rest']}))
+            }
         } else if(type === 'mouseout') {
-            setButtonStyle(style => ({...style, ...variants[variant]}))
+            if(variant === 'default') {
+                setButtonStyle(style => ({...style, ...colors[color]}));
+            } else {
+                setButtonStyle(style => ({...style, ...variants[variant]}))
+            }
         }
     }
     
     return (
-        <button onMouseOver={handleHover} onMouseOut={handleHover} style={buttonStyle} {...attributes} > 
+        <button disabled={disabled} onMouseOver={handleHover} onMouseOut={handleHover} style={buttonStyle} {...attributes} > 
             {buttonText}
         </button>
     )
