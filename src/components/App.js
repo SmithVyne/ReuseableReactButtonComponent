@@ -6,9 +6,14 @@ import UpdateButton from "./UpdateButton";
 
 
 function App() {
-  const [buttonProps, setButtonProps] = useState({})
+  const [buttonProps, setButtonProps] = useState({
+    variant: 'default',
+    disabled: false,
+    disableShadow: false
+  });
   
-
+  // console.log(buttonProps)
+  
   return (
     <div className="App">
       <h1 id="page-title">Buttons</h1>

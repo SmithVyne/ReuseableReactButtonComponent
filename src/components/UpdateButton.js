@@ -4,6 +4,9 @@ function UpdateButton({buttonProps, setButtonProps}) {
     const {disabled, disableShadow, variant} = buttonProps;
     const DisInstruction = disabled ? 'Enable' : 'Disable';
     const ShadInstruction = disableShadow ? 'Add' : 'Remove';
+
+    const buttonColors = (boolean) => ({backgroundColor: boolean ? '#455A64' : '#2962FF'});
+
     return (
         <>
             <div>
@@ -15,16 +18,20 @@ function UpdateButton({buttonProps, setButtonProps}) {
                 </select>
 
                 <label>Sizes</label>
-                <select onChange={({target}) => setButtonProps(props => ({...props, size: target.value})) } >
+                <select defaultValue="md" onChange={({target}) => setButtonProps(props => ({...props, size: target.value})) } >
                     <option value="sm">Small</option>
-                    <option selected value="md">Medium</option>
+                    <option value="md">Medium</option>
                     <option value="lg">Large</option>
                 </select>
             </div>
-
-            <div>
-                {variant === 'default' && <button>{ShadInstruction} Shadow</button>}
-                <button>{DisInstruction} Button</button>
+            
+            <div className="grid-group">
+                {variant === 'default' && 
+                    <button style={buttonColors(disableShadow)} onClick={() => setButtonProps(props => ({...props, disableShadow: !disableShadow}))} className="disableBtns">
+                        {ShadInstruction} Shadow
+                    </button>
+                }
+                <button style={buttonColors(disabled)} onClick={() => setButtonProps(props => ({...props, disabled: !disabled}))} className="disableBtns">{DisInstruction} Button</button>
             </div>
         </>
     )
