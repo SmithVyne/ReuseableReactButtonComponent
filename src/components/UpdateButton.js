@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Button from './Button';
 
 function UpdateButton({buttonProps, setButtonProps}) {
     const {disabled, disableShadow, variant} = buttonProps;
@@ -38,7 +39,10 @@ function UpdateButton({buttonProps, setButtonProps}) {
             </div>
 
             <div>
-                <button></button>
+                <Button />
+                <Button color="primary" />
+                <Button color="secondary" />
+                <Button color="danger" />
             </div>
         </>
     )
