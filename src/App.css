@@ -15,6 +15,7 @@
   width: max-content;
   margin: auto;
   gap: 15px;
+  margin-top: 15px;
 }
 
 .grid-group .disableBtns {
@@ -27,5 +28,52 @@
 }
 
 .grid-group .disableBtns:hover {
+  cursor: pointer;
+}
+
+#colorSelection {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.iconSelection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: auto;
+  width: fit-content;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.iconBoxes{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px 5px;
+}
+
+.material-icons.icons-select {
+  background-color: #3F3F3F;
+  color: #fff;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.material-icons.icons-select:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: #3F3F3F;
+}
+
+.icon-label {
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.icon-label:hover {
   cursor: pointer;
 }
