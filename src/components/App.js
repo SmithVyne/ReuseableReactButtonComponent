@@ -12,8 +12,6 @@ function App() {
     disableShadow: false
   });
   
-  // console.log(buttonProps)
-  
   return (
     <div className="App">
       <h1 id="page-title">Buttons</h1>

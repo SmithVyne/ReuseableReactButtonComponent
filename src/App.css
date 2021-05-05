@@ -10,6 +10,15 @@
   margin-left: 10px;
 }
 
+#options {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  margin: auto;
+  width: fit-content;
+  margin-top: 10px;
+}
+
 .grid-group {
   display: flex;
   width: max-content;

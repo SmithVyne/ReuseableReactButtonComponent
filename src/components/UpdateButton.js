@@ -18,7 +18,7 @@ function UpdateButton({buttonProps, setButtonProps}) {
 
     return (
         <>
-            <div>
+            <div id="options">
                 <label>Variants</label>
                 <select name="variant" onChange={({target}) => variantsAndSizes(target) } >
                     <option value="default">Default</option>
@@ -56,13 +56,13 @@ function UpdateButton({buttonProps, setButtonProps}) {
                 <div className="iconBoxes">
                     <span style={setIconSwitchColor()} onClick={()=>setShowIcons(bool => !bool)} className="icon-label">Left Icon</span>
                     {showIcons && icons.map(icon => 
-                        <span onClick={({target}) => setIcon("startIcon", target.textContent)} className='material-icons icons-select'>{icon}</span>)}
+                        <span key={icon} onClick={({target}) => setIcon("startIcon", target.textContent)} className='material-icons icons-select'>{icon}</span>)}
                 </div>
 
                 <div className="iconBoxes">
                     <span style={setIconSwitchColor()} onClick={()=>setShowIcons(bool => !bool)} className="icon-label">Right Icon</span>
                     {showIcons && icons.map(icon => 
-                        <span onClick={({target}) => setIcon("endIcon", target.textContent)} className='material-icons icons-select'>{icon}</span>)}
+                        <span key={icon} onClick={({target}) => setIcon("endIcon", target.textContent)} className='material-icons icons-select'>{icon}</span>)}
                 </div>
             </div>
         </>
