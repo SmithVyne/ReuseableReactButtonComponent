@@ -101,8 +101,8 @@ const colors = {
 
   
 
-const Button = ({variant="default", disabled, disableShadow, size='md', color='default', startIcon, endIcon, ...attributes}) => {
-    const [buttonText, setButtonText] = useState("Default");
+const Button = ({variant="default", disabled, disableShadow, size='md', color='default', startIcon, endIcon, children, ...attributes}) => {
+    const [buttonText, setButtonText] = useState("");
     const [buttonStyle, setButtonStyle] = useState({});
     
     useEffect(() => {
@@ -119,14 +119,18 @@ const Button = ({variant="default", disabled, disableShadow, size='md', color='d
 
             // Color Effect
             setButtonStyle(style => ({...style, ...colors[color]}));
+            setButtonText(`${color[0].toUpperCase() + color.slice(1)}`)
         }
 
         // Disable effect
         if(disabled) {
             const disable = {color : '#9E9E9E'};
             setButtonStyle(style => ({...style, ...disable}))
+            setButtonText("Disabled");
         }
-    }, [variant, disableShadow, disabled, color, size])
+
+        children && setButtonText(children)
+    }, [variant, disableShadow, disabled, color, size, children])
 
 
     
