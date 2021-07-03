@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React, {ReactElement, useState} from 'react';
 import '../App.css';
-import Button from "./Button";
+import Button, {Props} from "./Button";
 import UpdateButton from "./UpdateButton";
 
 
-
-function App() {
-  const [buttonProps, setButtonProps] = useState({
+function App():ReactElement {
+  const [buttonProps, setButtonProps] = useState<Props>({
     variant: 'default',
     disabled: false,
     disableShadow: false

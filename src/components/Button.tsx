@@ -1,6 +1,15 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect, ReactElement, ReactNode} from 'react';
 
-const variants = {
+interface styles {
+    [option: string] : buttonStyles;
+}
+
+interface buttonStyles {
+    [styleName: string] : string | buttonStyles;
+}
+
+
+const variants:styles = {
     default: {
         fontFamily: 'cursive',
         fontStyle: 'normal',
@@ -34,9 +43,6 @@ const variants = {
 
 
     hovers : {
-        // default: {
-        //     backgroundColor: '#AEAEAE',
-        // },
         rest: {
             backgroundColor: 'rgba(41, 98, 255, 0.1)',
             cursor: 'pointer'
@@ -44,8 +50,7 @@ const variants = {
     }
 }
 
-
-const sizes = {
+const sizes:styles = {
     sm: {
         width: '73px',
         height: '32px'
@@ -60,7 +65,7 @@ const sizes = {
     }
 }
 
-const colors = {
+const colors:styles = {
     default: {
         color: '#3F3F3F',
         backgroundColor: '#E0E0E0',
@@ -98,14 +103,24 @@ const colors = {
     }
 }
 
+export interface Props {
+    variant?: string;
+    disabled?: boolean;
+    disableShadow?: boolean;
+    size?: string;
+    color?: string;
+    startIcon?: string;
+    endIcon?: string;
+    children?: ReactNode;
+    attributes?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+}
 
-  
-
-const Button = ({variant="default", disabled, disableShadow, size='md', color='default', startIcon, endIcon, children, ...attributes}) => {
-    const [buttonText, setButtonText] = useState("");
-    const [buttonStyle, setButtonStyle] = useState({});
+const Button:React.FC<Props> = ({variant="default", disabled, disableShadow, size='md', color='default', startIcon, endIcon, children, ...attributes}):ReactElement => {
+    const [buttonText, setButtonText] = useState<string | ReactNode>("");
+    const [buttonStyle, setButtonStyle] = useState<React.CSSProperties | undefined>();
     
     useEffect(() => {
+        
         setButtonStyle({
             ...variants['default'],
             ...variants[variant],
@@ -134,12 +149,12 @@ const Button = ({variant="default", disabled, disableShadow, size='md', color='d
 
 
     
-    const handleHover = ({type}) => {
+    const handleHover = ({type}:{type: string}) => {
         if(type === 'mouseover') {
             if(variant === 'default') {
-                setButtonStyle(style => ({...style, ...colors['hovers'][color] }))
+                setButtonStyle(style => ({...style, ...(colors['hovers'][color] as object) }))
             } else {
-                setButtonStyle(style => ({...style, ...variants['hovers']['rest']}))
+                setButtonStyle(style => ({...style, ...(variants['hovers']['rest'] as object)}))
             }
         } else if(type === 'mouseout') {
             if(variant === 'default') {
